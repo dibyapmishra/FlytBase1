@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+
+import time
+from flyt_python import api
+
+drone = api.navigation()        #drone is an object in api.navigation class
+
+time.sleep(3.0)
+
+
+print 'taking-off'
+drone.take_off(5.0)    # automatically arms the motor and takes off, altitude as argument
+
+time.sleep(10.0)
+
+print 'Squaring_Away'
+drone.position_set(6.5,0,0,relative=True)
+time.sleep(10.0)
+
+drone.position_set(0,6.5,0,relative=True)
+time.sleep(10.0)
+
+drone.position_set(-6.5,0,0,relative=True)
+time.sleep(10.0)
+
+drone.position_set(0,-6.5,0,relative=True)
+time.sleep(10.0)
+
+print 'Landing'
+drone.land(async=False)
+
+drone.disconnect()
